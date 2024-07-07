@@ -1,6 +1,8 @@
+'use client'
+
 import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui'
-import { MoonIcon, Sun } from 'lucide-react'
+import { MoonIcon, MoonStarIcon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useCallback } from 'react'
 
@@ -16,9 +18,13 @@ export function ChangeTheme() {
 	}, [setTheme, theme])
 
 	return (
-		<Button size={'icon'} onClick={handleChangeTheme}>
-			<Sun className={cn('transition-transform scale-100 dark:scale-0')} />
-			<MoonIcon className={cn('transition-transform scale-0 dark:scale-100')} />
+		<Button size={'icon'} variant={'ghost'} onClick={handleChangeTheme}>
+			{theme === 'light' ? (
+				<Sun className={cn('transition-transform scale-100 dark:scale-0')} />
+			) : null}
+			{theme === 'dark' ? (
+				<MoonStarIcon color='#fff' className={cn('transition-transform scale-0 dark:scale-100')} />
+			) : null}
 		</Button>
 	)
 }
