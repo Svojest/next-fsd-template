@@ -4,21 +4,26 @@ import { cn } from '@/shared/lib'
 import { Button } from '@/shared/ui'
 import { MoonIcon, MoonStarIcon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 export function ChangeTheme() {
 	const { theme, setTheme } = useTheme()
+	const [isMounted, setIsMounted] = useState(false)
 
-	const handleChangeTheme = useCallback(() => {
-		if (theme === 'light') {
-			setTheme('dark')
-		} else {
-			setTheme('light')
-		}
+	const toggleTheme = useCallback(() => {
+		setTheme(theme === 'light' ? 'dark' : 'light')
 	}, [setTheme, theme])
 
+	useEffect(() => {
+		setIsMounted(true)
+	}, [])
+
+	// fix hydratation next-themes
+	if (!isMounted) {
+		return null
+	}
 	return (
-		<Button size={'icon'} variant={'ghost'} onClick={handleChangeTheme}>
+		<Button size={'icon'} variant={'ghost'} onClick={toggleTheme}>
 			{theme === 'light' ? (
 				<Sun className={cn('transition-transform scale-100 dark:scale-0')} />
 			) : null}

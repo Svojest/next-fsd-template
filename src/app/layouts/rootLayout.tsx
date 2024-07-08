@@ -17,14 +17,9 @@ export default function RootLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang='ru'>
-			<body className={cn('min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
-				<ThemeProvider
-					attribute='class'
-					defaultTheme='system'
-					enableSystem
-					disableTransitionOnChange
-				>
+		<html lang='ru' style={{ colorScheme: 'light' }} suppressHydrationWarning>
+			<body className={cn(' min-h-screen bg-background font-sans antialiased', fontSans.variable)}>
+				<ThemeProvider attribute='class' defaultTheme='light'>
 					{children}
 				</ThemeProvider>
 			</body>
