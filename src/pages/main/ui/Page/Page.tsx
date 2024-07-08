@@ -1,10 +1,9 @@
-import { ChangeTheme } from '@/features/theme/changeTheme'
+import { LayoutHeader } from '@/widgets/LayoutHeader'
 
 export function MainPage() {
 	return (
 		<main className='container'>
-			<p>Main page</p>
-			<ChangeTheme />
+			<LayoutHeader />
 		</main>
 	)
 }
